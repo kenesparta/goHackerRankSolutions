@@ -2,16 +2,15 @@ package main
 
 import (
 	"bufio"
+	"fmt"
 	"io"
 	"os"
 	"strconv"
 	"strings"
 )
 
-
-
 func main() {
-	reader := bufio.NewReaderSize(os.Stdin, 1024 * 1024)
+	reader := bufio.NewReaderSize(os.Stdin, 1024*1024)
 
 	nTemp, err := strconv.ParseInt(readLine(reader), 10, 64)
 	checkError(err)
@@ -27,6 +26,12 @@ func main() {
 		arrItem := int32(arrItemTemp)
 		arr = append(arr, arrItem)
 	}
+
+	// The solution starts here
+	for i := len(arr) - 1; i >= 0; i-- {
+		fmt.Printf("%d ", arr[i])
+	}
+	fmt.Println()
 }
 
 func readLine(reader *bufio.Reader) string {
