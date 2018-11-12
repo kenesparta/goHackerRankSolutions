@@ -1,3 +1,9 @@
+/*
+URL			: https://www.hackerrank.com/challenges/circular-array-rotation/problem
+AUTHOR		: darkshadows
+DIFFICULTY	: easy
+*/
+
 package main
 
 import (
@@ -10,8 +16,19 @@ import (
 )
 
 // Complete the circularArrayRotation function below.
-func circularArrayRotation(a []int32, k int32, queries []int32) []int32 {
+func circularArrayRotation(a []int32, k int32, queries []int32) (result []int32) {
+	arraySize := len(a)
+	arrayRotate := make(map[int32]int32)
 
+	for i := 0; i < arraySize; i++ {
+		arrayRotate[(int32(i)+k)%int32(arraySize)] = a[i]
+	}
+
+	for _, v := range queries {
+		result = append(result, arrayRotate[v])
+	}
+
+	return
 }
 
 func main() {

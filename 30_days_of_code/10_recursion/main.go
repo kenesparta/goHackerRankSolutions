@@ -9,24 +9,13 @@ import (
 	"strings"
 )
 
-// Complete the jumpingOnClouds function below.
-func jumpingOnClouds(c []int32) int32 {
-	var (
-		countClouds int32
-		countJumps  int32
-	)
-	for _, v := range c {
-		if v == 0 {
-			countClouds++
-		} else if v == 1 {
-			countJumps += int32(countClouds/2) + 1
-			countClouds = 0
-		}
+// Complete the factorial function below.
+func factorial(n int32) int32 {
+	if n == 0 {
+		return 1
+	} else {
+		return n * factorial(n-1)
 	}
-	if countClouds > 1 {
-		countJumps += int32(countClouds / 2)
-	}
-	return countJumps
 }
 
 func main() {
@@ -43,18 +32,7 @@ func main() {
 	checkError(err)
 	n := int32(nTemp)
 
-	cTemp := strings.Split(readLine(reader), " ")
-
-	var c []int32
-
-	for i := 0; i < int(n); i++ {
-		cItemTemp, err := strconv.ParseInt(cTemp[i], 10, 64)
-		checkError(err)
-		cItem := int32(cItemTemp)
-		c = append(c, cItem)
-	}
-
-	result := jumpingOnClouds(c)
+	result := factorial(n)
 
 	fmt.Fprintf(writer, "%d\n", result)
 

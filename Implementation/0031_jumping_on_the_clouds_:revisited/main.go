@@ -10,23 +10,20 @@ import (
 )
 
 // Complete the jumpingOnClouds function below.
-func jumpingOnClouds(c []int32) int32 {
-	var (
-		countClouds int32
-		countJumps  int32
-	)
-	for _, v := range c {
-		if v == 0 {
-			countClouds++
-		} else if v == 1 {
-			countJumps += int32(countClouds/2) + 1
-			countClouds = 0
+func jumpingOnClouds(c []int32, k int32) (energyLevel int32) {
+	energyLevel = 100
+	sizeCloudPath := int32(len(c))
+	var i int32
+	for i < sizeCloudPath {
+		i += k
+		evIdx := i % sizeCloudPath
+		if c[evIdx] == 1 {
+			energyLevel -= 3
+		} else {
+			energyLevel--
 		}
 	}
-	if countClouds > 1 {
-		countJumps += int32(countClouds / 2)
-	}
-	return countJumps
+	return
 }
 
 func main() {
@@ -39,9 +36,15 @@ func main() {
 
 	writer := bufio.NewWriterSize(stdout, 1024*1024)
 
-	nTemp, err := strconv.ParseInt(readLine(reader), 10, 64)
+	nk := strings.Split(readLine(reader), " ")
+
+	nTemp, err := strconv.ParseInt(nk[0], 10, 64)
 	checkError(err)
 	n := int32(nTemp)
+
+	kTemp, err := strconv.ParseInt(nk[1], 10, 64)
+	checkError(err)
+	k := int32(kTemp)
 
 	cTemp := strings.Split(readLine(reader), " ")
 
@@ -54,7 +57,7 @@ func main() {
 		c = append(c, cItem)
 	}
 
-	result := jumpingOnClouds(c)
+	result := jumpingOnClouds(c, k)
 
 	fmt.Fprintf(writer, "%d\n", result)
 
