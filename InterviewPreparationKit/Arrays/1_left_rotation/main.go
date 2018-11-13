@@ -11,8 +11,8 @@ import (
 
 // Complete the rotLeft function below.
 func rotLeft(a []int, d int) []int {
-	tamMatrix := int(len(a))
-	return append(a[d%tamMatrix:], a[0:d%tamMatrix]...)
+	sizeMatrix := int(len(a))
+	return append(a[d%sizeMatrix:], a[0:d%sizeMatrix]...)
 }
 
 func main() {
