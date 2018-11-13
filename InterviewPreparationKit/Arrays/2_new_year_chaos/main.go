@@ -2,7 +2,6 @@ package main
 
 import (
 	"bufio"
-	"fmt"
 	"io"
 	"os"
 	"strconv"
@@ -10,8 +9,8 @@ import (
 )
 
 type Person struct {
-	code   int32
-	brives int32
+	code         int32
+	numberBribes int32
 }
 
 // Complete the minimumBribes function below.
