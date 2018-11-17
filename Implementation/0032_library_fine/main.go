@@ -16,8 +16,27 @@ import (
 )
 
 // Complete the libraryFine function below.
-func libraryFine(d1 int32, m1 int32, y1 int32, d2 int32, m2 int32, y2 int32) int32 {
-
+func libraryFine(d1 int32, m1 int32, y1 int32, d2 int32, m2 int32, y2 int32) (int32) {
+	dayDiff := d1 - d2
+	monthDiff := m1 - m2
+	yearDiff := y1 - y2
+	if yearDiff < 0 {
+		return 0
+	} else if yearDiff == 0 {
+		if monthDiff < 0 {
+			return 0
+		} else if monthDiff == 0 {
+			if dayDiff <= 0 {
+				return 0
+			} else {
+				return dayDiff * 15
+			}
+		} else {
+			return monthDiff * 500
+		}
+	} else {
+		return 10000
+	}
 }
 
 func main() {
