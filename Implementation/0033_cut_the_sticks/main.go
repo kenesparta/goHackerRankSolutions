@@ -10,8 +10,9 @@ import (
 )
 
 // minNotZero calculates the mininum positive value on array
-func minNotZeroAndSubs(arr []int32) (minValueArr []int32, quantity int32) {
+func minNotZeroAndSubs(arr []int32) (minValueArr []int32, changes int32) {
 	var minValue int32
+
 	// Select non zero value
 	for _, v := range arr {
 		if v > 0 {
@@ -20,17 +21,18 @@ func minNotZeroAndSubs(arr []int32) (minValueArr []int32, quantity int32) {
 		}
 	}
 
+	// Select min value
 	for _, v := range arr {
 		if v > 0 && minValue >= v {
 			minValue = v
 		}
 	}
 
+	// Count the changes
 	for _, v := range arr {
 		rest := v - minValue
 		if rest >= 0 {
-			quantity++
-
+			changes++
 		} else {
 			rest = 0
 		}
@@ -52,9 +54,9 @@ func verifyAllZero(arr []int32) bool {
 // Complete the cutTheSticks function below.
 func cutTheSticks(arr []int32) (numberCuts []int32) {
 	var quantity int32
-	arrayresult := arr
-	for !verifyAllZero(arrayresult) {
-		arrayresult, quantity = minNotZeroAndSubs(arrayresult)
+	arrayResult := arr
+	for !verifyAllZero(arrayResult) {
+		arrayResult, quantity = minNotZeroAndSubs(arrayResult)
 		numberCuts = append(numberCuts, quantity)
 	}
 	return
