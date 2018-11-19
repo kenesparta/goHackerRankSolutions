@@ -6,7 +6,7 @@ Go to [Haker Rank](https://www.hackerrank.com).
 
 Add the environment variable `$OUTPUT_PATH` to `~/.bashrc`.
 
-Tip to run a test file called `input`.
+Tip to run a test file called `inputs`.
 
 ```
 go run main.go < inputs ; cat $OUTPUT_PATH
