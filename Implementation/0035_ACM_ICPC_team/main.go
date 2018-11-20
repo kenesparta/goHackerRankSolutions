@@ -39,7 +39,7 @@ func countMax(arr []int32) []int32 {
 // Complete the acmTeam function below.
 func acmTeam(topic []string) []int32 {
 	sizeSubjects := len(topic[0])
-	var know []int32
+	var know []int32 // Subjects common known by the participants
 	for i, v1 := range topic {
 		for _, v2 := range topic[i+1:] {
 			var countKnows int32
