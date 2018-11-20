@@ -1,6 +1,6 @@
 /*
-URL			: https://www.hackerrank.com/challenges/strange-code/problem
-AUTHOR		: Shafaet
+URL			: https://www.hackerrank.com/challenges/taum-and-bday/problem
+AUTHOR		: amititkgp
 DIFFICULTY	: easy
 */
 
