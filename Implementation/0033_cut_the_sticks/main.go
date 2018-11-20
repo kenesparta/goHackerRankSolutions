@@ -1,3 +1,9 @@
+/*
+URL			: https://www.hackerrank.com/challenges/cut-the-sticks/problem
+AUTHOR		: shashank21j
+DIFFICULTY	: easy
+*/
+
 package main
 
 import (
@@ -9,7 +15,7 @@ import (
 	"strings"
 )
 
-// minNotZero calculates the mininum positive value on array
+// minNotZero calculates the minimum positive value on array
 func minNotZeroAndSubs(arr []int32) (minValueArr []int32, changes int32) {
 	var minValue int32
 
