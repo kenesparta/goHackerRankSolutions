@@ -15,9 +15,27 @@ import (
 	"strings"
 )
 
-// Complete the serviceLane function below.
-func serviceLane(n int32, cases [][]int32) []int32 {
+func minNumber(arr []int32) (min int32) {
+	min = arr[0]
+	for _, v := range arr {
+		if v < min {
+			min = v
+		}
+	}
+	return
+}
 
+// Complete the serviceLane function below.
+func serviceLane(n int32, width []int32, cases [][]int32) (largestVehicle []int32) {
+	//fmt.Println(n, cases)
+	for _, v := range cases {
+		var (
+			start = v[0]
+			end   = v[1] + 1
+		)
+		largestVehicle = append(largestVehicle, minNumber(width[start:end]))
+	}
+	return
 }
 
 func main() {
@@ -70,7 +88,7 @@ func main() {
 		cases = append(cases, casesRow)
 	}
 
-	result := serviceLane(n, cases)
+	result := serviceLane(n, width, cases)
 
 	for i, resultItem := range result {
 		fmt.Fprintf(writer, "%d", resultItem)
