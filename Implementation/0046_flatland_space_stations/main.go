@@ -9,21 +9,54 @@ import (
 	"strings"
 )
 
+type City struct {
+	numberStation int32
+	hasStation    bool
+}
+
+type Cities []City
+
+func populateCity(n int32, c []int32) (cities Cities) {
+	for i := int32(0); i < n; i++ {
+		city := City{
+			i,
+			false,
+		}
+		cities = append(cities, city)
+	}
+
+	for _, v1 := range c {
+		for i := int32(0); i < n; i++ {
+			// For update use pointer
+			attr := &cities[i]
+			if v1 == cities[i].numberStation {
+				attr.hasStation = true
+				break
+			}
+		}
+	}
+
+	return
+}
+
 // Complete the flatlandSpaceStations function below.
-func flatlandSpaceStations(n int32, c []int32) int32 {
+func flatlandSpaceStations(n int32, c []int32) (maxDistance int32) {
+	cities := populateCity(n, c)
+	for _, v := range cities {
 
-
+	}
+	return 0
 }
 
 func main() {
-	reader := bufio.NewReaderSize(os.Stdin, 1024 * 1024)
+	reader := bufio.NewReaderSize(os.Stdin, 1024*1024)
 
 	stdout, err := os.Create(os.Getenv("OUTPUT_PATH"))
 	checkError(err)
 
 	defer stdout.Close()
 
-	writer := bufio.NewWriterSize(stdout, 1024 * 1024)
+	writer := bufio.NewWriterSize(stdout, 1024*1024)
 
 	nm := strings.Split(readLine(reader), " ")
 
