@@ -20,13 +20,18 @@ func workbook(n int32, k int32, arr []int32) (specialPages int32) {
 	var pageNumber int32 = 1
 	for i := int32(0); i < n; i++ {
 		for j := int32(1); j <= arr[i]; j++ {
+			// When the special pages exists
 			if j == pageNumber {
 				specialPages++
 			}
+
+			// Capture the next page
 			if j%k == 0 {
 				pageNumber++
 			}
 		}
+
+		// Force to the next page
 		if arr[i]%k != 0 {
 			pageNumber++
 		}

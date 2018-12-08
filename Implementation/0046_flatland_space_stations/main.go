@@ -41,11 +41,42 @@ func populateCity(n int32, c []int32) (cities Cities) {
 
 // Complete the flatlandSpaceStations function below.
 func flatlandSpaceStations(n int32, c []int32) (maxDistance int32) {
-	cities := populateCity(n, c)
-	for _, v := range cities {
+	var (
+		tmpDistance    int32
+		tmpMaxDistance int32
+		initStation    = false
+		cities         = populateCity(n, c)
+	)
 
+	//fmt.Println(cities)
+
+	for _, v := range cities {
+		if !v.hasStation {
+			tmpDistance++
+		} else {
+			if initStation {
+				tmpMaxDistance = (tmpDistance + 1) / 2
+				// Set the max distance
+				if tmpMaxDistance >= maxDistance {
+					maxDistance = tmpMaxDistance
+				}
+			} else {
+				tmpMaxDistance = tmpDistance
+			}
+			//fmt.Println(tmpMaxDistance)
+			tmpDistance = 0
+			initStation = true
+		}
 	}
-	return 0
+
+	// When does not exist station on the last city
+	if tmpDistance != 0 {
+		tmpMaxDistance = tmpDistance
+		if tmpMaxDistance >= maxDistance {
+			maxDistance = tmpMaxDistance
+		}
+	}
+	return
 }
 
 func main() {
