@@ -1,3 +1,9 @@
+/*
+URL			: https://www.hackerrank.com/challenges/flatland-space-stations/problem
+AUTHOR		: Shafaet
+DIFFICULTY	: easy
+*/
+
 package main
 
 import (
@@ -27,7 +33,7 @@ func populateCity(n int32, c []int32) (cities Cities) {
 
 	for _, v1 := range c {
 		for i := int32(0); i < n; i++ {
-			// For update use pointer
+			// For update, use pointer
 			attr := &cities[i]
 			if v1 == cities[i].numberStation {
 				attr.hasStation = true
@@ -56,14 +62,15 @@ func flatlandSpaceStations(n int32, c []int32) (maxDistance int32) {
 		} else {
 			if initStation {
 				tmpMaxDistance = (tmpDistance + 1) / 2
-				// Set the max distance
-				if tmpMaxDistance >= maxDistance {
-					maxDistance = tmpMaxDistance
-				}
 			} else {
 				tmpMaxDistance = tmpDistance
 			}
-			//fmt.Println(tmpMaxDistance)
+
+			// Set the max distance
+			if tmpMaxDistance >= maxDistance {
+				maxDistance = tmpMaxDistance
+			}
+
 			tmpDistance = 0
 			initStation = true
 		}
