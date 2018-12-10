@@ -11,25 +11,43 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"sort"
 	"strconv"
 	"strings"
 )
 
 // Complete the stones function below.
-func stones(n int32, a int32, b int32) []int32 {
-
-
+func stones(n int32, a int32, b int32) (stoneValue []int32) {
+	var (
+		init = n - 1
+		add  int32
+	)
+	// Set the first value
+	stoneValue = append(stoneValue, init*a)
+	add = 1
+	for i := init - 1; i >= 0; i-- {
+		result := i*a + b*add
+		size := len(stoneValue)
+		if result != stoneValue[size-1] {
+			stoneValue = append(stoneValue, result)
+		}
+		add++
+	}
+	sort.Slice(stoneValue, func(i, j int) bool {
+		return stoneValue[i] < stoneValue[j]
+	})
+	return
 }
 
 func main() {
-	reader := bufio.NewReaderSize(os.Stdin, 1024 * 1024)
+	reader := bufio.NewReaderSize(os.Stdin, 1024*1024)
 
 	stdout, err := os.Create(os.Getenv("OUTPUT_PATH"))
 	checkError(err)
 
 	defer stdout.Close()
 
-	writer := bufio.NewWriterSize(stdout, 1024 * 1024)
+	writer := bufio.NewWriterSize(stdout, 1024*1024)
 
 	TTemp, err := strconv.ParseInt(readLine(reader), 10, 64)
 	checkError(err)
@@ -53,7 +71,7 @@ func main() {
 		for i, resultItem := range result {
 			fmt.Fprintf(writer, "%d", resultItem)
 
-			if i != len(result) - 1 {
+			if i != len(result)-1 {
 				fmt.Fprintf(writer, " ")
 			}
 		}
