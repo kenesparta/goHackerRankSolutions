@@ -16,7 +16,27 @@ import (
 
 // Complete the superReducedString function below.
 func superReducedString(s string) string {
-
+	var (
+		hIdx = 1 // Head Index
+		tIdx int // Tail index
+		size = len(s)
+	)
+	for hIdx < size {
+		if s[tIdx] == s[hIdx] {
+			s = s[0:tIdx] + s[hIdx+1:]
+			hIdx = 1
+			tIdx = 0
+		} else {
+			hIdx++
+			tIdx++
+		}
+		size = len(s)
+	}
+	if s == "" {
+		return "Empty String"
+	} else {
+		return s
+	}
 }
 
 func main() {
