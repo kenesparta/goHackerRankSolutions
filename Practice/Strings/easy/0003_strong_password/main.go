@@ -15,21 +15,42 @@ import (
 	"strings"
 )
 
-const (
-	numbers           = "0123456789"
-	lowerCase         = "abcdefghijklmnopqrstuvwxyz"
-	upperCase         = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-	specialCharacters = "!@#$%^&*()-+"
-)
+const specialCharacters = "!@#$%^&*()-+"
+
+func hasElement(password string, inf, sup rune) int32 {
+	for _, v := range password {
+		if v >= inf && v <= sup {
+			return 0
+		}
+	}
+	return 1
+}
+
+func hasSpecialChar(password string) int32 {
+	for _, v := range password {
+		for _, s := range specialCharacters {
+			if s == v {
+				return 0
+			}
+		}
+	}
+	return 1
+}
 
 // Complete the minimumNumber function below.
 func minimumNumber(n int32, password string) int32 {
 	// Return the minimum number of characters to make the password strong
-	var minStrong int32
-	if n <= 6 {
-		minStrong = n-6
+	minLength := 6 - n
+	nNumbers := hasElement(password, 47, 57)
+	nUppChar := hasElement(password, 65, 90)
+	nLowChar := hasElement(password, 97, 122)
+	nSpecialChar := hasSpecialChar(password)
+	minReq := nNumbers + nUppChar + nLowChar + nSpecialChar
+	if minLength > minReq {
+		return minLength
+	} else {
+		return minReq
 	}
-
 }
 
 func main() {
