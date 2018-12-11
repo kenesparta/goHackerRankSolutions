@@ -1,3 +1,9 @@
+/*
+URL			: https://www.hackerrank.com/challenges/camelcase/problem
+AUTHOR		: nabila_ahmed
+DIFFICULTY	: easy
+*/
+
 package main
 
 import (
@@ -6,11 +12,18 @@ import (
 	"io"
 	"os"
 	"strings"
+	"unicode"
 )
 
 // Complete the camelcase function below.
 func camelcase(s string) int32 {
-
+	var count int32
+	for _, v := range s {
+		if unicode.IsUpper(v) {
+			count++
+		}
+	}
+	return count + 1
 }
 
 func main() {
