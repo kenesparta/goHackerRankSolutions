@@ -1,6 +1,6 @@
 /*
 URL			: https://www.hackerrank.com/challenges/strong-password/problem
-AUTHOR		: anveshi
+AUTHOR		: nabila_ahmed
 DIFFICULTY	: easy
 */
 
