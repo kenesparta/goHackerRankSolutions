@@ -1,3 +1,9 @@
+/*
+URL			: https://www.hackerrank.com/challenges/mars-exploration/problem
+AUTHOR		: Shafaet
+DIFFICULTY	: easy
+*/
+
 package main
 
 import (
