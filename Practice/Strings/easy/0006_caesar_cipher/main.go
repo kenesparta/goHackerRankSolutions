@@ -9,21 +9,37 @@ import (
 	"strings"
 )
 
+// Uppercase 65 - 90
+// lowercase 97 -122
+
+func applyCipher(s rune, k int32) (cipher rune) {
+	if 64 <= s && s <= 90 {
+		cipher = (int32(s)-65+k)%26 + 65
+	} else if 97 <= s && s <= 122 {
+		cipher = (int32(s)-97+k)%26 + 97
+	} else {
+		cipher = s
+	}
+	return
+}
+
 // Complete the caesarCipher function below.
-func caesarCipher(s string, k int32) string {
-
-
+func caesarCipher(n int32, s string, k int32) (newSting string) {
+	for _, v := range s {
+		newSting += string(applyCipher(v, k))
+	}
+	return
 }
 
 func main() {
-	reader := bufio.NewReaderSize(os.Stdin, 1024 * 1024)
+	reader := bufio.NewReaderSize(os.Stdin, 1024*1024)
 
 	stdout, err := os.Create(os.Getenv("OUTPUT_PATH"))
 	checkError(err)
 
 	defer stdout.Close()
 
-	writer := bufio.NewWriterSize(stdout, 1024 * 1024)
+	writer := bufio.NewWriterSize(stdout, 1024*1024)
 
 	nTemp, err := strconv.ParseInt(readLine(reader), 10, 64)
 	checkError(err)
@@ -35,7 +51,7 @@ func main() {
 	checkError(err)
 	k := int32(kTemp)
 
-	result := caesarCipher(s, k)
+	result := caesarCipher(n, s, k)
 
 	fmt.Fprintf(writer, "%s\n", result)
 
