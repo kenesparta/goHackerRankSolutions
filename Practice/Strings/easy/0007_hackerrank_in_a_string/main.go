@@ -18,7 +18,7 @@ import (
 
 // Complete the hackerrankInString function below.
 func hackerrankInString(s string) string {
-	match, _ := regexp.MatchString(`(\w*)h(\w*)c(\w*)k(\w*)e(\w*)r(\w*)r(\w*)a(\w*)n(\w*)k(\w*)`, s)
+	match, _ := regexp.MatchString(`(\w*)h(\w*)a(\w*)c(\w*)k(\w*)e(\w*)r(\w*)r(\w*)a(\w*)n(\w*)k(\w*)`, s)
 	if match {
 		return "YES"
 	} else {
