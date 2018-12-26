@@ -43,7 +43,6 @@ func separateNumbers(s string) (answer string) {
 			numberDigitsNext    = numberDigitOf(firstNumber + 1)
 			flag                = true
 		)
-
 		if numberDigitsCurrent < size/2+1 {
 			if string(s[numberDigitsCurrent]) != "0" {
 				w := numberDigitsCurrent
@@ -51,7 +50,6 @@ func separateNumbers(s string) (answer string) {
 					firstNumber++
 					numberDigitsNext = numberDigitOf(firstNumber)
 					lowLim := numberDigitsNext + w
-
 					// Verify if the lower limit if more than size array
 					if lowLim <= size {
 						seqNumber, _ := strconv.ParseInt(string(s[w:lowLim]), 10, 64)

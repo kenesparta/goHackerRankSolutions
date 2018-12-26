@@ -15,9 +15,30 @@ import (
 	"strings"
 )
 
+func abs(n int) int {
+	if n < 0 {
+		return -1 * n
+	} else {
+		return n
+	}
+}
+
+func reverseString(s string) (rev string) {
+	for i := len(s) - 1; i >= 0; i-- {
+		rev += string(s[i])
+	}
+	return
+}
+
 // Complete the funnyString function below.
 func funnyString(s string) string {
-
+	rev := reverseString(s)
+	for i := 0; i < len(s)-1; i++ {
+		if abs(int(rev[i])-int(rev[i+1])) != abs(int(s[i])-int(s[i+1])) {
+			return "Not Funny"
+		}
+	}
+	return "Funny"
 }
 
 func main() {

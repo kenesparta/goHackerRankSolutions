@@ -1,5 +1,2 @@
-Yes
-No
-Yes
-Yes
-No
+Funny
+Not Funny
