@@ -27,39 +27,43 @@ func numberDigitOf(number int64) int {
 func separateNumbers(s string) string {
 	size := len(s)
 	if string(s[0]) == "0" {
-		return "No"
+		return "NO"
 	}
 	var i int
 	for i = 1; i <= size; i++ {
 		var (
-			firstNumber, _      = strconv.ParseInt(string(s[0:i]), 10, 32)
+			firstNumber, _      = strconv.ParseInt(string(s[0:i]), 10, 64)
 			numberDigitsCurrent = numberDigitOf(firstNumber)
 			numberDigitsNext    = numberDigitOf(firstNumber + 1)
 			flag                = true
 		)
-		if numberDigitsNext < size/2+2 {
+		if numberDigitsCurrent < size/2+1 {
 			if string(s[numberDigitsCurrent]) != "0" {
-				for w := numberDigitsCurrent; w < size; w += numberDigitsNext {
+				w := numberDigitsCurrent
+				for w < size {
 					firstNumber++
-					seqNumber, _ := strconv.ParseInt(string(s[w:numberDigitsNext+w]), 10, 32)
-					if firstNumber != seqNumber {
-						flag = false
-						break
+					numberDigitsNext = numberDigitOf(firstNumber)
+					limInf := numberDigitsNext+w
+					if limInf <= size {
+						seqNumber, _ := strconv.ParseInt(string(s[w:limInf]), 10, 64)
+						if firstNumber != seqNumber {
+							flag = false
+							break
+						}
+					} else {
+						return "NO"
 					}
-					numberDigitsNext = numberDigitOf(firstNumber + 1)
+					w += numberDigitsNext
 				}
 				if flag {
 					break
-				} else {
-					flag = true
 				}
 			}
 		} else {
-			return "No"
+			return "NO"
 		}
-
 	}
-	return fmt.Sprintf("%s %s\n", "Yes", string(s[0:i]))
+	return fmt.Sprintf("%s %s", "YES", string(s[0:i]))
 }
 
 func main() {
