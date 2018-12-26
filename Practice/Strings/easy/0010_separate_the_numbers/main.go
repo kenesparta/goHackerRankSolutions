@@ -15,6 +15,11 @@ import (
 	"strings"
 )
 
+const (
+	negAns = "NO"
+	affAns = "YES"
+)
+
 func numberDigitOf(number int64) int {
 	if number/10 == 0 {
 		return 1
@@ -24,10 +29,11 @@ func numberDigitOf(number int64) int {
 }
 
 // Complete the separateNumbers function below.
-func separateNumbers(s string) string {
+func separateNumbers(s string) (answer string) {
+	answer = negAns
 	size := len(s)
 	if string(s[0]) == "0" {
-		return "NO"
+		return
 	}
 	var i int
 	for i = 1; i <= size; i++ {
@@ -37,21 +43,24 @@ func separateNumbers(s string) string {
 			numberDigitsNext    = numberDigitOf(firstNumber + 1)
 			flag                = true
 		)
+
 		if numberDigitsCurrent < size/2+1 {
 			if string(s[numberDigitsCurrent]) != "0" {
 				w := numberDigitsCurrent
 				for w < size {
 					firstNumber++
 					numberDigitsNext = numberDigitOf(firstNumber)
-					limInf := numberDigitsNext+w
-					if limInf <= size {
-						seqNumber, _ := strconv.ParseInt(string(s[w:limInf]), 10, 64)
+					lowLim := numberDigitsNext + w
+
+					// Verify if the lower limit if more than size array
+					if lowLim <= size {
+						seqNumber, _ := strconv.ParseInt(string(s[w:lowLim]), 10, 64)
 						if firstNumber != seqNumber {
 							flag = false
 							break
 						}
 					} else {
-						return "NO"
+						return
 					}
 					w += numberDigitsNext
 				}
@@ -60,10 +69,10 @@ func separateNumbers(s string) string {
 				}
 			}
 		} else {
-			return "NO"
+			return
 		}
 	}
-	return fmt.Sprintf("%s %s", "YES", string(s[0:i]))
+	return fmt.Sprintf("%s %s", affAns, string(s[0:i]))
 }
 
 func main() {
