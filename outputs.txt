@@ -1,2 +1,3 @@
-Funny
-Not Funny
+3
+0
+-1

@@ -15,9 +15,45 @@ import (
 	"strings"
 )
 
-// Complete the gemstones function below.
-func gemstones(arr []string) int32 {
+// Verify if an current letter is in array
+func inArray(s string, letter string) bool {
+	for _, v := range s {
+		if string(v) == letter {
+			return true
+		}
+	}
+	return false
+}
 
+// Clean all the letters that repeat on a given string
+func cleanRep(s string) string {
+	banList := string(s[0])
+	for _, v := range s {
+		if !inArray(banList, string(v)) {
+			banList += string(v)
+		}
+	}
+	return banList
+}
+
+// Complete the gemstones function below.
+func gemstones(arr []string) (gems int32) {
+	pivotalArray := cleanRep(arr[0])
+	//fmt.Println(pivotalArray)
+	for _, v1 := range pivotalArray {
+		flag := true
+		for _, v2 := range arr[1:] {
+			if !inArray(v2, string(v1)) {
+				flag = false
+				break
+			}
+		}
+		//fmt.Println(flag)
+		if flag {
+			gems++
+		}
+	}
+	return
 }
 
 func main() {
