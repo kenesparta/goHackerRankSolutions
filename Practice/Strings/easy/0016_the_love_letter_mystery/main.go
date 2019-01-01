@@ -1,5 +1,5 @@
 /*
-URL			: https://www.hackerrank.com/challenges/alternating-characters/problem
+URL			: https://www.hackerrank.com/challenges/the-love-letter-mystery/problem
 AUTHOR		: amititkgp
 DIFFICULTY	: easy
 */
@@ -15,20 +15,9 @@ import (
 	"strings"
 )
 
-// Complete the alternatingCharacters function below.
-func alternatingCharacters(s string) int32 {
-	var (
-		initLetter = string(s[0])
-		deletion   int32
-	)
-	for _, v := range s[1:] {
-		if string(v) == string(initLetter) {
-			deletion++
-		} else {
-			initLetter = string(v)
-		}
-	}
-	return deletion
+// Complete the theLoveLetterMystery function below.
+func theLoveLetterMystery(s string) int32 {
+
 }
 
 func main() {
@@ -48,7 +37,7 @@ func main() {
 	for qItr := 0; qItr < int(q); qItr++ {
 		s := readLine(reader)
 
-		result := alternatingCharacters(s)
+		result := theLoveLetterMystery(s)
 
 		fmt.Fprintf(writer, "%d\n", result)
 	}

@@ -15,7 +15,7 @@ import (
 	"strings"
 )
 
-// Is palindrome better solution
+// Palindrome better solution
 func isPalindrome(s string) bool {
 	comparations := len(s) / 2
 	topCom := len(s) - 1
@@ -31,15 +31,21 @@ func isPalindrome(s string) bool {
 
 // Complete the palindromeIndex function below.
 func palindromeIndex(s string) int32 {
-	size := int32(len(s))
 	if isPalindrome(s) {
 		return -1
 	} else {
-		for i := int32(0); i < size; i++ {
-			palTest := s[0:i] + s[i+1:size]
-			if isPalindrome(palTest) {
+		size := int32(len(s))
+		topCom := size - 1
+		for i := int32(0); i < size/2; i++ {
+			palTestBegin := s[0:i] + s[i+1:size]
+			if isPalindrome(palTestBegin) {
 				return i
 			}
+			paltestEnd := s[0:topCom] + s[topCom+1:size]
+			if isPalindrome(paltestEnd) {
+				return topCom
+			}
+			topCom--
 		}
 		return -1
 	}
