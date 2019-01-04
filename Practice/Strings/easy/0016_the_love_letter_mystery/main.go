@@ -15,9 +15,30 @@ import (
 	"strings"
 )
 
+// Palindrome better solution
+func abs(n int32) int32 {
+	if n < 0 {
+		return n * -1
+	} else {
+		return n
+	}
+}
+
 // Complete the theLoveLetterMystery function below.
 func theLoveLetterMystery(s string) int32 {
-
+	var (
+		nComp  = len(s) / 2
+		topCom = len(s) - 1
+		minOp  int32
+	)
+	for i := 0; i < nComp; i++ {
+		dif := abs(int32(s[i]) - int32(s[topCom]))
+		if dif != 0 {
+			minOp += dif
+		}
+		topCom--
+	}
+	return minOp
 }
 
 func main() {

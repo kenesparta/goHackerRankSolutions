@@ -16,19 +16,16 @@ import (
 )
 
 // Complete the alternatingCharacters function below.
-func alternatingCharacters(s string) int32 {
-	var (
-		initLetter = string(s[0])
-		deletion   int32
-	)
+func alternatingCharacters(s string) (deletion int32) {
+	var initLetter = string(s[0])
 	for _, v := range s[1:] {
-		if string(v) == string(initLetter) {
+		if string(v) == initLetter {
 			deletion++
 		} else {
 			initLetter = string(v)
 		}
 	}
-	return deletion
+	return
 }
 
 func main() {

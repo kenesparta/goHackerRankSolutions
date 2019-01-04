@@ -1,5 +1,5 @@
 /*
-URL			: https://www.hackerrank.com/challenges/palindrome-index/problem
+URL			: https://www.hackerrank.com/challenges/anagram/problem
 AUTHOR		: amititkgp
 DIFFICULTY	: easy
 */
@@ -15,40 +15,9 @@ import (
 	"strings"
 )
 
-// Palindrome better solution
-func isPalindrome(s string) bool {
-	nComp := len(s) / 2
-	topCom := len(s) - 1
-	for i := 0; i < nComp; i++ {
-		if s[i] != s[topCom] {
-			return false
-		} else {
-			topCom--
-		}
-	}
-	return true
-}
+// Complete the anagram function below.
+func anagram(s string) int32 {
 
-// Complete the palindromeIndex function below.
-func palindromeIndex(s string) int32 {
-	if isPalindrome(s) {
-		return -1
-	} else {
-		size := int32(len(s))
-		topCom := size - 1
-		for i := int32(0); i < size/2; i++ {
-			palTestBegin := s[0:i] + s[i+1:size]
-			if isPalindrome(palTestBegin) {
-				return i
-			}
-			palTestEnd := s[0:topCom] + s[topCom+1:size]
-			if isPalindrome(palTestEnd) {
-				return topCom
-			}
-			topCom--
-		}
-		return -1
-	}
 }
 
 func main() {
@@ -68,7 +37,7 @@ func main() {
 	for qItr := 0; qItr < int(q); qItr++ {
 		s := readLine(reader)
 
-		result := palindromeIndex(s)
+		result := anagram(s)
 
 		fmt.Fprintf(writer, "%d\n", result)
 	}
