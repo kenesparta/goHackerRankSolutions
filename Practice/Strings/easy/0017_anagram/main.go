@@ -15,9 +15,47 @@ import (
 	"strings"
 )
 
+// Mapping different strings
+func mapDiffChar(s string) map[string]int32 {
+	counts := make(map[string]int32)
+	for _, l := range s {
+		strL := string(l)
+		if _, ok := counts[strL]; ok {
+			counts[strL] ++
+		} else {
+			counts[strL] = 1
+		}
+	}
+	return counts
+}
+
+// Count the number of letters on string
+func countChars(c, s string) (total int32) {
+	for _, v := range s {
+		if c == string(v) {
+			total++
+		}
+	}
+	return
+}
+
 // Complete the anagram function below.
 func anagram(s string) int32 {
-
+	size := len(s)
+	if size%2 != 0 {
+		return -1
+	} else {
+		firstPart := s[0 : size/2]
+		secondPart := s[size/2:]
+		var totalChanges int32
+		for k, v := range mapDiffChar(firstPart) {
+			diff := v - countChars(k, secondPart)
+			if diff > 0 {
+				totalChanges += diff
+			}
+		}
+		return totalChanges
+	}
 }
 
 func main() {

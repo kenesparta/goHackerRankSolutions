@@ -25,11 +25,10 @@ func abs(n int32) int32 {
 }
 
 // Complete the theLoveLetterMystery function below.
-func theLoveLetterMystery(s string) int32 {
+func theLoveLetterMystery(s string) (minOp int32) {
 	var (
 		nComp  = len(s) / 2
 		topCom = len(s) - 1
-		minOp  int32
 	)
 	for i := 0; i < nComp; i++ {
 		dif := abs(int32(s[i]) - int32(s[topCom]))
@@ -38,7 +37,7 @@ func theLoveLetterMystery(s string) int32 {
 		}
 		topCom--
 	}
-	return minOp
+	return
 }
 
 func main() {
