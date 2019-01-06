@@ -1,6 +1,6 @@
 /*
-URL			: https://www.hackerrank.com/challenges/anagram/problem
-AUTHOR		: amititkgp
+URL			: https://www.hackerrank.com/challenges/two-strings/problem
+AUTHOR		: zxqfd555
 DIFFICULTY	: easy
 */
 
@@ -29,33 +29,16 @@ func mapDiffChar(s string) map[string]int32 {
 	return counts
 }
 
-// Count the number of letters on string
-func countChars(c, s string) (total int32) {
-	for _, v := range s {
-		if c == string(v) {
-			total++
+// Complete the twoStrings function below.
+func twoStrings(s1, s2 string) string {
+	mapS1 := mapDiffChar(s1)
+	mapS2 := mapDiffChar(s2)
+	for k,_ :=range mapS1 {
+		if _, ok := mapS2[k]; ok{
+			return "YES"
 		}
 	}
-	return
-}
-
-// Complete the anagram function below.
-func anagram(s string) int32 {
-	size := len(s)
-	if size%2 != 0 {
-		return -1
-	} else {
-		firstPart := s[:size/2]
-		secondPart := s[size/2:]
-		var totalChanges int32
-		for k, v := range mapDiffChar(firstPart) {
-			diff := v - countChars(k, secondPart)
-			if diff > 0 {
-				totalChanges += diff
-			}
-		}
-		return totalChanges
-	}
+	return "NO"
 }
 
 func main() {
@@ -73,11 +56,13 @@ func main() {
 	q := int32(qTemp)
 
 	for qItr := 0; qItr < int(q); qItr++ {
-		s := readLine(reader)
+		s1 := readLine(reader)
 
-		result := anagram(s)
+		s2 := readLine(reader)
 
-		fmt.Fprintf(writer, "%d\n", result)
+		result := twoStrings(s1, s2)
+
+		fmt.Fprintf(writer, "%s\n", result)
 	}
 
 	writer.Flush()

@@ -1,5 +1,5 @@
 /*
-URL			: https://www.hackerrank.com/challenges/anagram/problem
+URL			: https://www.hackerrank.com/challenges/game-of-thrones/problem
 AUTHOR		: amititkgp
 DIFFICULTY	: easy
 */
@@ -11,7 +11,6 @@ import (
 	"fmt"
 	"io"
 	"os"
-	"strconv"
 	"strings"
 )
 
@@ -29,33 +28,18 @@ func mapDiffChar(s string) map[string]int32 {
 	return counts
 }
 
-// Count the number of letters on string
-func countChars(c, s string) (total int32) {
-	for _, v := range s {
-		if c == string(v) {
-			total++
+// Complete the gameOfThrones function below.
+func gameOfThrones(s string) string {
+	var countImp int32
+	for _,v := range mapDiffChar(s){
+		if v%2 !=0 {
+			countImp++
+		}
+		if countImp > 1 {
+			return "NO"
 		}
 	}
-	return
-}
-
-// Complete the anagram function below.
-func anagram(s string) int32 {
-	size := len(s)
-	if size%2 != 0 {
-		return -1
-	} else {
-		firstPart := s[:size/2]
-		secondPart := s[size/2:]
-		var totalChanges int32
-		for k, v := range mapDiffChar(firstPart) {
-			diff := v - countChars(k, secondPart)
-			if diff > 0 {
-				totalChanges += diff
-			}
-		}
-		return totalChanges
-	}
+	return "YES"
 }
 
 func main() {
@@ -68,17 +52,11 @@ func main() {
 
 	writer := bufio.NewWriterSize(stdout, 1024*1024)
 
-	qTemp, err := strconv.ParseInt(readLine(reader), 10, 64)
-	checkError(err)
-	q := int32(qTemp)
+	s := readLine(reader)
 
-	for qItr := 0; qItr < int(q); qItr++ {
-		s := readLine(reader)
+	result := gameOfThrones(s)
 
-		result := anagram(s)
-
-		fmt.Fprintf(writer, "%d\n", result)
-	}
+	fmt.Fprintf(writer, "%s\n", result)
 
 	writer.Flush()
 }
